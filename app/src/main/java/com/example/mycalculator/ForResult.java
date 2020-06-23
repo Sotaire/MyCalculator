@@ -19,14 +19,16 @@ public class ForResult extends AppCompatActivity {
     public static final String RESULT_KEY = "result_key";
     public static String saved;
 
-    Adapter adapter;
+    Adapter adapter = new Adapter;
+
+    RecyclerView recyclerview;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_for_result);
 
-        RecyclerView recyclerview = findViewById(R.id.recycle_view);
+        recyclerview = findViewById(R.id.recycle_view);
 
         recyclerview.setAdapter(adapter);
 
