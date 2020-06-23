@@ -1,6 +1,7 @@
 package com.example.mycalculator;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,9 +27,12 @@ public class MainActivity extends AppCompatActivity {
     String intermediateNumber = "";
     boolean isOperation = false;
 
+    public static final String RETURN_RESULT = "return_result";
+
     private ArrayList <Integer> id = new ArrayList<>();
     private  int idLogic;
 
+    String savedText;
 
 
     @Override
@@ -36,18 +41,30 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         panel = findViewById(R.id.text);
 
-
+        getData();
 
         Button btnResult = findViewById(R.id.sendResult);
         btnResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(MainActivity.this,ForResult.class);
-                intent2.putExtra(ForResult.RESULT_KEY,panel.getText().toString());
-                startActivity(intent2);
+                String newText = savedText;
+                Intent intent = new Intent();
+                intent.putExtra(RETURN_RESULT,newText +panel.getText().toString());
+                setResult(RESULT_OK,intent);
+                finish();
+
             }
         });
     }
+
+    public void getData () {
+        Intent intent = getIntent();
+        if (intent!=null){
+            String text = intent.getStringExtra(ForResult.RESULT_KEY);
+            savedText = text;
+        }
+    }
+
     public void onClick_buttons(View view) {
         if (isOperation) {
             panel.setText("");
