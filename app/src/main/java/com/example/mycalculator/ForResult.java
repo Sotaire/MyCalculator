@@ -26,6 +26,10 @@ public class ForResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_for_result);
 
+        RecyclerView recyclerview = findViewById(R.id.recycle_view);
+
+        recyclerview.setAdapter(adapter);
+
         getData();
 
         Button btnCalculator = findViewById(R.id.openCalculator);
@@ -36,27 +40,28 @@ public class ForResult extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-         Button btnresult = findViewById(R.id.sendText);
-         btnresult.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 share(saved);
-           }
-         });
-          }
+        Button btnresult = findViewById(R.id.sendText);
+        btnresult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                share(saved);
+            }
+        });
+    }
 
-    private void getData () {
+    private void getData() {
         Intent intent2 = getIntent();
         if (intent2 != null) {
             saved = intent2.getStringExtra(RESULT_KEY);
             adapter.History(saved);
         }
     }
-            public void share (String text){
-                final Intent intent = new Intent();
-                intent.setAction(intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(intent.EXTRA_TEXT, text);
-                startActivity(intent.createChooser(intent, saved));
-            }
+
+    public void share(String text) {
+        final Intent intent = new Intent();
+        intent.setAction(intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(intent.EXTRA_TEXT, text);
+        startActivity(intent.createChooser(intent, saved));
+    }
 }
