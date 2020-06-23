@@ -2,6 +2,7 @@ package com.example.mycalculator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     TextView panel;
     private double result, firstNumber, secondNumber;
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         panel = findViewById(R.id.text);
+
+
+
         Button btnResult = findViewById(R.id.sendResult);
         btnResult.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                         result = firstNumber / secondNumber;
                         break;
                 }
-                panel.setText(result + "");
+                panel.setText(firstNumber + " " +operation + " " + secondNumber + "=" +  result + "");
                 isOperation = true;
                 break;
         }
@@ -291,4 +297,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         Log.d("new","onDestroy");
     }
+
+
 }

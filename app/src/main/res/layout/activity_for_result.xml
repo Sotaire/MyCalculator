@@ -13,16 +13,18 @@
         android:text="Calculator"
         android:id="@+id/openCalculator"/>
 
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:id="@+id/getResult"
-        android:text=""/>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sendText"
         android:text="Share"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycle_view"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </LinearLayout>
